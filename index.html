@@ -5,32 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>ProjectManager</title>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="app.css" />
     <script src="app.js" defer></script>
   </head>
   <body>
     <template id="project-input">
       <form>
-        <div class="form-control">
+        <div class="form-control1">
           <label for="title">Title</label>
           <input type="text" id="title" />
+          <div id="textAlert" class="alert alert-danger w-25 py-0" style="display: none;">Invalid Title</div>
         </div>
-        <div class="form-control">
+        <div class="form-control1">
           <label for="description">Description</label>
           <textarea id="description" rows="3"></textarea>
+          <div id="descriptionAlert" class="alert alert-danger w-50 py-0" style="display: none;">Description length should be atleast 5 character.</div>
         </div>
-        <div class="form-control">
+        <div class="form-control1">
           <label for="people">People</label>
           <input type="number" id="people" step="1" min="0" max="10" />
+          <div id="peoAlert" class="alert alert-danger w-50 py-0" style="display: none;">Project member should be from 1 to 5.</div>
         </div>
         <button type="submit">ADD PROJECT</button>
       </form>
     </template>
     <template id="single-project">
       <li draggable="true">
-          <h2></h2>
-          <h3></h3>
-          <p></p>
+        <h2></h2>
+        <h3></h3>
+        <p></p>
       </li>
     </template>
     <template id="project-list">

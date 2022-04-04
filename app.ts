@@ -265,7 +265,7 @@ class ProjectList extends Component<HTMLDivElement, HTMLElement>
     rendercon(){
         const lisid=`${this.type}-projects-list`;
         this.element.querySelector('ul')!.id=lisid;
-        this.element.querySelector('h2')!.textContent=this.type.toUpperCase()+ 'Projects';
+        this.element.querySelector('h2')!.textContent=this.type.charAt(0).toUpperCase()+this.type.slice(1)+ ' Projects';
     }
 }
 
@@ -312,16 +312,34 @@ class ProjectInput extends Component<HTMLDivElement, HTMLFormElement> {
         min: 1,
         max: 5
     }
-
-    if(
-        !validate(titvali) ||
-        !validate(desvali) ||
-        !validate(peovali)
-    )
-    {
-        alert("Invalid input, please try again!");
-        return;
-    }else{
+    const titalert=document.getElementById('textAlert')!;
+    const desAlert=document.getElementById('descriptionAlert')!;
+    const peoAlert=document.getElementById('peoAlert')!;
+    if(!validate(titvali)){
+        titalert.style.display = "block";
+        return
+    }
+    if(!validate(desvali)){
+        desAlert.style.display="block";
+        return
+    }
+    if(!validate(peovali)){
+        peoAlert.style.display="block";
+        return
+    }
+    // if(
+    //     !validate(titvali) ||
+    //     !validate(desvali) ||
+    //     !validate(peovali)
+    // )
+    // {
+    //     alert("Invalid input, please try again!");
+    //     return;
+    // }
+    else{
+        peoAlert.style.display="none";
+        desAlert.style.display="none";
+        titalert.style.display = "none";
         return [entTit, entDes, +entPeo];
     }
   }

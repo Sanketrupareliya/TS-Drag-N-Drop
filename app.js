@@ -5,6 +5,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 var ProSta;
 (function (ProSta) {
     ProSta[ProSta["Active"] = 0] = "Active";
@@ -139,7 +142,10 @@ class ProItm extends Component {
     }
 }
 __decorate([
-    autobind
+    autobind,
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [DragEvent]),
+    __metadata("design:returntype", void 0)
 ], ProItm.prototype, "dragStart", null);
 //Project list
 class ProjectList extends Component {
@@ -190,17 +196,26 @@ class ProjectList extends Component {
     rendercon() {
         const lisid = `${this.type}-projects-list`;
         this.element.querySelector('ul').id = lisid;
-        this.element.querySelector('h2').textContent = this.type.toUpperCase() + 'Projects';
+        this.element.querySelector('h2').textContent = this.type.charAt(0).toUpperCase() + this.type.slice(1) + ' Projects';
     }
 }
 __decorate([
-    autobind
+    autobind,
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [DragEvent]),
+    __metadata("design:returntype", void 0)
 ], ProjectList.prototype, "dragOver", null);
 __decorate([
-    autobind
+    autobind,
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [DragEvent]),
+    __metadata("design:returntype", void 0)
 ], ProjectList.prototype, "dropHand", null);
 __decorate([
-    autobind
+    autobind,
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [DragEvent]),
+    __metadata("design:returntype", void 0)
 ], ProjectList.prototype, "dragLeave", null);
 //input
 class ProjectInput extends Component {
@@ -234,13 +249,34 @@ class ProjectInput extends Component {
             min: 1,
             max: 5
         };
-        if (!validate(titvali) ||
-            !validate(desvali) ||
-            !validate(peovali)) {
-            alert("Invalid input, please try again!");
+        const titalert = document.getElementById('textAlert');
+        const desAlert = document.getElementById('descriptionAlert');
+        const peoAlert = document.getElementById('peoAlert');
+        if (!validate(titvali)) {
+            titalert.style.display = "block";
             return;
         }
+        if (!validate(desvali)) {
+            desAlert.style.display = "block";
+            return;
+        }
+        if (!validate(peovali)) {
+            peoAlert.style.display = "block";
+            return;
+        }
+        // if(
+        //     !validate(titvali) ||
+        //     !validate(desvali) ||
+        //     !validate(peovali)
+        // )
+        // {
+        //     alert("Invalid input, please try again!");
+        //     return;
+        // }
         else {
+            peoAlert.style.display = "none";
+            desAlert.style.display = "none";
+            titalert.style.display = "none";
             return [entTit, entDes, +entPeo];
         }
     }
@@ -260,7 +296,10 @@ class ProjectInput extends Component {
     }
 }
 __decorate([
-    autobind
+    autobind,
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Event]),
+    __metadata("design:returntype", void 0)
 ], ProjectInput.prototype, "submit", null);
 const prj = new ProjectInput();
 const activeProList = new ProjectList('active');
